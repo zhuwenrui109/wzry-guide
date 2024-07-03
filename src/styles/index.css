@@ -1,0 +1,15 @@
+@font-face {
+  font-family: wzry;
+  src: url("https://lengyibai.github.io/wzry-material/font/wzry.ttf?temp=1");
+}
+@font-face {
+  font-family: digit;
+  src: url("https://lengyibai.github.io/wzry-material/font/digit.ttf?temp=1");
+}
+* {
+  font-family: wzry;
+  cursor: none;
+  line-height: 1.25;
+  margin: 0;
+  padding: 0;
+}
