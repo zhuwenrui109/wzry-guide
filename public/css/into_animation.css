@@ -1,3 +1,9 @@
+:root {
+  --rate: 1;
+}
+@media screen and (max-width: 960px) {
+  --rate: 1.5;
+}
 .startup-wrap {
   position: fixed;
   top: 0;
@@ -6,34 +12,228 @@
   height: 100%;
   background: #000;
 }
-.startup-wrap .tips {
-  position: absolute;
-  left: 1vw;
-  top: 1vw;
-  font-size: 2.7083vw;
-  line-height: 1.25;
-  color: rgba(255, 255, 255, 0.25);
-}
 .startup-wrap .main {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.startup-wrap .main .icon {
+  position: relative;
+  width: calc(26.0417vw / 2 * var(--rate));
+  height: calc(24.2188vw / 2 * var(--rate));
+  animation: into-scale 3s forwards ease-out, into-opacity 2s forwards;
+  transform-origin: center center;
+}
+@keyframes into-opacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes into-scale {
+  0% {
+    transform: scale(3);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.startup-wrap .main .icon .inside-box {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  animation: inside-box 6s 3s infinite linear;
+  transform-origin: center center;
+}
+.startup-wrap .main .icon .inside-box .inside {
+  width: 100%;
+  height: 100%;
+  animation: inside-rotate 3s forwards linear;
+  transform-origin: center center;
+}
+.startup-wrap .main .icon .inside-box .inside .a {
+  animation: into-a 3s forwards ease-out;
+}
+@keyframes into-a {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.startup-wrap .main .icon .inside-box .inside .b {
+  animation: into-b 3s forwards ease-out;
+}
+@keyframes into-b {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes inside-rotate {
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+@keyframes inside-box {
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+.startup-wrap .main .icon .outside-box {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  animation: outside-box 3s 3s infinite linear;
+  transform-origin: center center;
+}
+.startup-wrap .main .icon .outside-box .outside {
+  width: 100%;
+  height: 100%;
+  animation: outside-rotate 3s forwards linear;
+  transform-origin: center center;
+}
+.startup-wrap .main .icon .outside-box .outside .c {
+  animation: into-c 3s forwards ease-out;
+}
+@keyframes into-c {
+  0% {
+    transform: translate(-100%, -100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+.startup-wrap .main .icon .outside-box .outside .d {
+  animation: into-d 3s forwards ease-out;
+}
+@keyframes into-d {
+  0% {
+    transform: translate(100%, 100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+@keyframes outside-rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes outside-box {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.startup-wrap .main .icon .spirit_into-1,
+.startup-wrap .main .icon .spirit_into-2,
+.startup-wrap .main .icon .spirit_into-3,
+.startup-wrap .main .icon .spirit_into-4 {
+  position: absolute;
+  width: calc(26.0417vw / 2 * var(--rate));
+  height: calc(24.2188vw / 2 * var(--rate));
+  background-size: calc(52.0833vw / 2 * var(--rate)) calc(48.4375vw / 2 * var(--rate));
+  background-image: url("https://lengyibai.github.io/wzry-material/image/white_logo.png");
+}
+.startup-wrap .main .icon .spirit_into-1 {
+  background-position: 0 0;
+}
+.startup-wrap .main .icon .spirit_into-2 {
+  background-position: calc(-26.0417vw / 2 * var(--rate)) 0;
+}
+.startup-wrap .main .icon .spirit_into-3 {
+  background-position: 0 calc(-24.2188vw / 2 * var(--rate));
+}
+.startup-wrap .main .icon .spirit_into-4 {
+  background-position: calc(-26.0417vw / 2 * var(--rate)) calc(-24.2188vw / 2 * var(--rate));
 }
 .startup-wrap .main .title {
-  width: 37.0833vw;
+  width: 0;
   height: calc(13.8021vw);
+  overflow: hidden;
+  animation: into-move 0.5s 2.9s forwards;
+}
+@keyframes into-move {
+  100% {
+    margin-left: 2.6042vw;
+    width: 37.0833vw;
+  }
 }
 .startup-wrap .main .title img {
   display: block;
   width: 100%;
   height: 100%;
+  background: linear-gradient(to right, #fff, #fff) no-repeat right center / 100% 100%;
+  animation: leave-bg 0.5s 3.25s forwards;
+}
+@keyframes leave-bg {
+  100% {
+    background-size: 0 100%;
+  }
 }
 .startup-wrap .start-btn {
   position: absolute;
-  right: 1vw;
-  bottom: 1vw;
+  right: 6em;
+  bottom: 2em;
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
+  align-items: flex-start;
+  justify-content: flex-end;
+  opacity: 0;
+  transform: translateX(-50%);
+  animation: into 0.75s 3s forwards;
+}
+@keyframes into {
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+.startup-wrap .start-btn .txt {
+  font-size: 2.5vw;
+  line-height: 1.25;
+  color: #fff;
+  margin-right: 1em;
+}
+.startup-wrap .start-btn .arrows {
+  position: relative;
+}
+.startup-wrap .start-btn .arrows .arrow {
+  position: absolute;
+  top: 0;
+  left: calc(var(--i) * -1vw * var(--rate));
+  font-size: 2.5vw;
+  line-height: 1.25;
+  color: #fff;
+  opacity: 0;
+  animation: move 1.75s calc(var(--i) * 0.3s) linear infinite;
+}
+@keyframes move {
+  0% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(calc(3vw * var(--rate)));
+    opacity: 0;
+  }
+}
+.startup-wrap .tips {
+  position: absolute;
+  left: 1vw;
+  top: 1vw;
+  font-size: 2vw;
+  line-height: 1.25;
+  color: rgba(255, 255, 255, 0.25);
 }

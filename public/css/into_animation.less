@@ -1,5 +1,16 @@
 // https://lengyibai.github.io/wzry-material/image/white_logo.png
+:root {
+  --rate: 1;
+}
+
+@media screen and (max-width: 960px) {
+
+  --rate: 1.5;
+
+}
+
 .startup-wrap {
+  @time: 3s;
   position: fixed;
   top: 0;
   left: 0;
@@ -7,43 +18,277 @@
   height: 100%;
   background: #000;
 
-  .tips {
-    position: absolute;
-    left: 1vw;
-    top: 1vw;
-    font-size: 2.7083vw;
-    line-height: 1.25;
-    color: rgba(255, 255, 255, 0.25);
-  }
-
   .main {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .icon {
+      position: relative;
+      width: calc(26.0417vw / 2 * var(--rate));
+      height: calc(24.2188vw / 2 * var(--rate));
+      animation:
+        into-scale @time forwards ease-out,
+        into-opacity @time - 1 forwards;
+      transform-origin: center center;
+
+      @keyframes into-opacity {
+        0% {
+          opacity: 0;
+        }
+
+        100% {
+          opacity: 1;
+        }
+      }
+
+      @keyframes into-scale {
+        0% {
+          transform: scale(3);
+        }
+
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      .inside-box {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        animation: inside-box @time * 2 @time infinite linear;
+        transform-origin: center center;
+
+        .inside {
+          width: 100%;
+          height: 100%;
+          animation: inside-rotate @time forwards linear;
+          transform-origin: center center;
+
+          .a {
+            animation: into-a @time forwards ease-out;
+
+            @keyframes into-a {
+              0% {
+                transform: translateX(-100%);
+              }
+
+              100% {
+                transform: translateX(0);
+              }
+            }
+          }
+
+          .b {
+            animation: into-b @time forwards ease-out;
+
+            @keyframes into-b {
+              0% {
+                transform: translateX(100%);
+              }
+
+              100% {
+                transform: translateX(0);
+              }
+            }
+          }
+
+          @keyframes inside-rotate {
+            100% {
+              transform: rotate(-360deg);
+            }
+          }
+        }
+
+        @keyframes inside-box {
+          100% {
+            transform: rotate(-360deg);
+          }
+        }
+      }
+
+      .outside-box {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        animation: outside-box @time @time infinite linear;
+        transform-origin: center center;
+
+        .outside {
+          width: 100%;
+          height: 100%;
+          animation: outside-rotate @time forwards linear;
+          transform-origin: center center;
+
+          .c {
+            animation: into-c @time forwards ease-out;
+
+            @keyframes into-c {
+              0% {
+                transform: translate(-100%, -100%);
+              }
+
+              100% {
+                transform: translateX(0%);
+              }
+            }
+          }
+
+          .d {
+            animation: into-d @time forwards ease-out;
+
+            @keyframes into-d {
+              0% {
+                transform: translate(100%, 100%);
+              }
+
+              100% {
+                transform: translateX(0%);
+              }
+            }
+          }
+
+          @keyframes outside-rotate {
+            100% {
+              transform: rotate(360deg);
+            }
+          }
+        }
+
+        @keyframes outside-box {
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+      }
+
+      .spirit_into-1,
+      .spirit_into-2,
+      .spirit_into-3,
+      .spirit_into-4 {
+        position: absolute;
+        width: calc(26.0417vw / 2 * var(--rate));
+        height: calc(24.2188vw / 2 * var(--rate));
+        background-size: calc(52.0833vw / 2 * var(--rate)) calc(48.4375vw / 2 * var(--rate));
+        background-image: url("https://lengyibai.github.io/wzry-material/image/white_logo.png");
+      }
+
+      .spirit_into-1 {
+        background-position: 0 0;
+      }
+
+      .spirit_into-2 {
+        background-position: calc(-26.0417vw / 2 * var(--rate)) 0;
+      }
+
+      .spirit_into-3 {
+        background-position: 0 calc(-24.2188vw / 2 * var(--rate));
+      }
+
+      .spirit_into-4 {
+        background-position: calc(-26.0417vw / 2 * var(--rate)) calc(-24.2188vw / 2 * var(--rate));
+      }
+    }
 
     .title {
-      width: 37.0833vw;
+      width: 0;
       height: calc(13.8021vw);
+      overflow: hidden;
+      animation: into-move 0.5s @time - 0.1s forwards;
+
+      @keyframes into-move {
+        100% {
+          margin-left: 2.6042vw;
+          width: 37.0833vw;
+        }
+      }
 
       img {
         display: block;
         width: 100%;
         height: 100%;
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to right, #fff, #fff) no-repeat right center / 100% 100%;
+        animation: leave-bg 0.5s @time + 0.25s forwards;
+
+        @keyframes leave-bg {
+          100% {
+            background-size: 0 100%;
+          }
+        }
       }
     }
   }
 
   .start-btn {
     position: absolute;
-    right: 1vw;
-    bottom: 1vw;
+    right: 6em;
+    bottom: 2em;
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
+    align-items: flex-start;
+    justify-content: flex-end;
+    opacity: 0;
+    transform: translateX(-50%);
+    animation: into .75s 3s forwards;
+
+    @keyframes into {
+      100% {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
 
     .txt {
-      // font-size: ;
+      font-size: 2.5vw;
+      line-height: 1.25;
+      color: #fff;
+      margin-right: 1em;
     }
+
+    .arrows {
+      position: relative;
+
+      .arrow {
+        position: absolute;
+        top: 0;
+        left: calc(var(--i) * -1vw * var(--rate));
+        font-size: 2.5vw;
+        line-height: 1.25;
+        color: #fff;
+        opacity: 0;
+        animation: move 1.75s calc(var(--i) * .3s) linear infinite;
+      }
+
+      @keyframes move {
+        0% {
+          opacity: 0;
+          transform: translateX(0);
+        }
+
+        50% {
+          opacity: 1;
+        }
+
+        100% {
+          transform: translateX(calc(3vw * var(--rate)));
+          opacity: 0;
+        }
+      }
+    }
+  }
+
+  .tips {
+    position: absolute;
+    left: 1vw;
+    top: 1vw;
+    font-size: 2vw;
+    line-height: 1.25;
+    color: rgba(255, 255, 255, 0.25);
   }
 }
